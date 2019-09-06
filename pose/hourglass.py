@@ -105,7 +105,7 @@ class StackedHourglass(nn.Module):
             if i < self.stacks-1:
                 x = x + self.middle_branch[i](middle) + self.output_branch[i](output)
 
-        # 测试模式时，返回最后一个stack的heatmap
+        # 测试模式时，返回最后一个stack的heatmap，关节的坐标，scores
         # 训练模式时，返回loss
         if not self.training:
             return (y[-1], *self.argmax(y[-1]))
